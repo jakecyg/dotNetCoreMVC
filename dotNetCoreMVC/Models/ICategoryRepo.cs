@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace dotNetCoreMVC.Models
 {
-    interface ICategoryRepo
+    public interface ICategoryRepo
     {
         IEnumerable<Category> GetAllCategories { get; }
     }

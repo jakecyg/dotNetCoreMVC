@@ -1,3 +1,4 @@
+using dotNetCoreMVC.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,11 @@ namespace dotNetCoreMVC
 
             // Support for MVC framework
             services.AddControllersWithViews();
+            services.AddScoped<IPieRepo, MockPieRepo>();
+            services.AddScoped<ICategoryRepo, MockCategoryRepo>();
+            //services.AddSingleton create a single instance for the entire app and reuse that single instace
+            //services.AddTransient create a new instance everytime you ask for you
+            //services.AddScoped create new instance PER REQUEST- and the isntance remains active throughout the request(a singleton per request)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

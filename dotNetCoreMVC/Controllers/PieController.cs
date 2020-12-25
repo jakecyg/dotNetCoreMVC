@@ -1,4 +1,5 @@
 ﻿using dotNetCoreMVC.Models;
+using dotNetCoreMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,12 @@ namespace dotNetCoreMVC.Controllers
         /// List a view with the list of all pies
         /// </summary>
         /// <returns></returns>
-        public ViewResult List()
+        public ViewResult PieList()
         {
-            return View(_pieRepo.GetAllPies);
+            var vm = new PiesListVM();
+            vm.Pies = _pieRepo.GetAllPies;
+            vm.CurrentCategory = "Cheese Cakes";
+            return View(vm);
         }
     }
 }

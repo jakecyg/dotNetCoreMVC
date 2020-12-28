@@ -31,8 +31,8 @@ namespace dotNetCoreMVC
             services.AddDbContext<dbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Support for MVC framework
             services.AddControllersWithViews();
-            services.AddScoped<IPieRepo, MockPieRepo>();
-            services.AddScoped<ICategoryRepo, MockCategoryRepo>();
+            services.AddScoped<IPieRepo, PieRepo>();
+            services.AddScoped<ICategoryRepo, CategoryRepo>();
             //services.AddSingleton create a single instance for the entire app and reuse that single instace
             //services.AddTransient create a new instance everytime you ask for you
             //services.AddScoped create new instance PER REQUEST- and the isntance remains active throughout the request(a singleton per request)

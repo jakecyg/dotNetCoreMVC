@@ -17,6 +17,7 @@ namespace dotNetCoreMVC.Models
         public string ImageThumbnailUrl { get; set; }
         public bool IsPieOfTheWeek { get; set; }
         public bool InStock { get; set; }
+        public string Notes { get; set; }
         public int CategoryId { get; set; }
         // Nav prop
         public Category Category { get; set; }

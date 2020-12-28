@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace dotNetCoreMVC.ViewModels
 {
-    public class PiesListVM
+    public class HomeVM
     {
-        public IEnumerable<Pie> Pies { get; set; }
-        public Pie Pie { get; set; }
-        public string CurrentCategory { get; set; }
+        public IEnumerable<Pie> PiesOfTheWeek { get; set; }
     }
 }

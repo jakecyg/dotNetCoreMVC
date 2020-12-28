@@ -58,9 +58,10 @@ namespace dotNetCoreMVC
 
             app.UseEndpoints(endpoints =>
             {
+                //add convention based default route
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id:int?}");
             });
         }
     }

@@ -30,5 +30,12 @@ namespace dotNetCoreMVC.Controllers
             vm.CurrentCategory = "Cheese Cakes";
             return View(vm);
         }
+
+        public IActionResult Details(int id)
+        {
+            var pie = _pieRepo.GetPieById(id);
+            if (pie == null) return NotFound();
+            return View(pie);
+        }
     }
 }

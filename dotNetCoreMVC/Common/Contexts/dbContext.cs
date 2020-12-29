@@ -15,6 +15,7 @@ namespace dotNetCoreMVC.Common.Contexts
         }
         public DbSet<Pie> Pies { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         //use to configure how the actual sql server db should be created && used to seed data
         protected override void OnModelCreating(ModelBuilder modelBuilder)

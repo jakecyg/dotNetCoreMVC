@@ -29,10 +29,15 @@ namespace dotNetCoreMVC
 
             // Setup connectionstring from appsetting.json file; avaiilable through injected IConfiguration
             services.AddDbContext<dbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             // Support for MVC framework
             services.AddControllersWithViews();
             services.AddScoped<IPieRepo, PieRepo>();
             services.AddScoped<ICategoryRepo, CategoryRepo>();
+            // Associate a shopping cart with client request to the site
+            services.AddScoped<ShoppingCart>(x => ShoppingCart.GetCart(x));
+            services.AddHttpContextAccessor();
+            services.AddSession();
             //services.AddSingleton create a single instance for the entire app and reuse that single instace
             //services.AddTransient create a new instance everytime you ask for you
             //services.AddScoped create new instance PER REQUEST- and the isntance remains active throughout the request(a singleton per request)
@@ -53,7 +58,7 @@ namespace dotNetCoreMVC
             // Enable app to serve static files(js, css, etc.)
             // Default to serve files in wwwroot folder
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

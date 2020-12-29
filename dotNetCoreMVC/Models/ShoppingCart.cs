@@ -20,7 +20,7 @@ namespace dotNetCoreMVC.Models
         public static ShoppingCart GetCart(IServiceProvider services)
         {
             // Bring access to sessions(by default you dont have access to session in a regular class(you do in controllers))
-            ISession session = services.GetRequiredService<HttpContextAccessor>()?.HttpContext.Session;
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             // Bring access to dbContext
             var context = services.GetService<dbContext>();
             // Look for session key called CartId, if null then create new guid and assign

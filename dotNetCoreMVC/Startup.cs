@@ -31,7 +31,6 @@ namespace dotNetCoreMVC
             services.AddDbContext<dbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Support for MVC framework
-            services.AddControllersWithViews();
             services.AddScoped<IPieRepo, PieRepo>();
             services.AddScoped<ICategoryRepo, CategoryRepo>();
             // Associate a shopping cart with client request to the site
@@ -41,6 +40,7 @@ namespace dotNetCoreMVC
             //services.AddSingleton create a single instance for the entire app and reuse that single instace
             //services.AddTransient create a new instance everytime you ask for you
             //services.AddScoped create new instance PER REQUEST- and the isntance remains active throughout the request(a singleton per request)
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

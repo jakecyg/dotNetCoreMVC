@@ -23,11 +23,29 @@ namespace dotNetCoreMVC.Controllers
         /// List a view with the list of all pies
         /// </summary>
         /// <returns></returns>
-        public ViewResult PieList()
+        public ViewResult PieList(string category)
         {
-            var vm = new PiesListVM();
-            vm.Pies = _pieRepo.GetAllPies;
-            vm.CurrentCategory = "Cheese Cakes";
+            IEnumerable<Pie> pies;
+            string currentCategory;
+
+            if (string.IsNullOrEmpty(category))
+            {
+                pies = _pieRepo.GetAllPies.OrderBy(x => x.Id);
+                currentCategory = "All pies";
+            }
+            else
+            {
+                pies            = _pieRepo.GetAllPies
+                                          .Where(x => x.Category.CategoryName == category)
+                                         .OrderBy(p => p.Id);
+                currentCategory = _categoryRepo.GetAllCategories.FirstOrDefault(x => x.CategoryName == category)?.CategoryName;
+            }
+
+            var vm = new PiesListVM
+            {
+                Pies = pies,
+                CurrentCategory = currentCategory
+            };
             return View(vm);
         }
 
